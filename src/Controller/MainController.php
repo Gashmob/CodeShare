@@ -29,7 +29,7 @@ class MainController extends AbstractController
      */
     public function submit(Request $request, EntityManagerInterface $em): JsonResponse
     {
-        $titre = $request->get('titre');
+        $titre = $request->get('title');
         $code = $request->get('code');
 
         $c = new Code();
@@ -49,7 +49,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/{uid}", name="see")
+     * @Route("/{uid}", name="see", defaults={"uid":""})
      * @param string $uid
      * @param EntityManagerInterface $em
      * @return Response
@@ -58,6 +58,20 @@ class MainController extends AbstractController
     {
         $uid = trim($uid);
 
-        return $this->json(['hello']);
+        $code = false;
+        $c = $em->getRepository(Code::class)->findOneBy(['uid' => $uid]);
+        if ($c != null) {
+            $file = fopen('code/' . $uid . '.code', 'r');
+
+            $code = "";
+            while (($line = fread($file, 100))) {
+                $code .= $line;
+            }
+        }
+
+        return $this->render('see.html.twig', [
+            'title' => $c == null ? 'Sans Titre' : $c->getName(),
+            'code' => $code
+        ]);
     }
 }

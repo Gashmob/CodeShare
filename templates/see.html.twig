@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }} | Code Share</title>
+    <link rel="icon" href="{{ asset('img/icon.png') }}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/see.css') }}">
+</head>
+
+<body>
+{% if not code %}
+    <div class="code_error">
+        <p>Code non trouvé</p>
+    </div>
+{% else %}
+    <textarea class="code" readonly>
+{{ code }}
+    </textarea>
+{% endif %}
+</body>
+</html>

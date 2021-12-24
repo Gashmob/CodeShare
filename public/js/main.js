@@ -16,7 +16,9 @@ $('.share').on('click', function () {
                 $('.share')[0].innerHTML = '<i class="fas fa-check"></i> Shared'
 
                 const uid = data['uid'];
-                navigator.clipboard.writeText(linkUrl + '' + uid);
+                const link = linkUrl + '' + uid
+                navigator.clipboard.writeText(link)
+                window.open(link, '_blank')
             } else {
                 $('.share')[0].innerHTML = '<i class="fas fa-times"></i> Error'
             }

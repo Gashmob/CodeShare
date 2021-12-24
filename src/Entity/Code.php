@@ -43,6 +43,7 @@ class Code
     {
         $this->createdAt = new DateTimeImmutable();
         $this->language = '';
+        $this->name = 'Sans Titre';
     }
 
     public function getId(): ?int
