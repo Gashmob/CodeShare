@@ -1,19 +1,37 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Share</title>
+    <link rel="icon" href="{{ asset('img/icon.png') }}">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+</head>
+
+<body>
+<div class="head">
+    <span><i class="fas fa-code"></i> CodeShare</span>
+    <input type="text" name="name" class="title" placeholder="Sans titre" autocomplete="off">
+    <button class="share"><i class="fas fa-share-alt"></i> Share</button>
+</div>
+<div class="code">
+    <textarea class="code_area" autocomplete="off" spellcheck="false" placeholder="#include <stdio.h>
+
+int main() {
+    printf(&#34;Hello World!&#34;);
+
+    return 0;
+}"></textarea>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    const postUrl = "{{ path('submit') }}";
+    const linkUrl = "{{ url('see') }}";
+</script>
+<script src="{{ asset('js/main.js') }}"></script>
+</body>
 </html>
