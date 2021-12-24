@@ -3,10 +3,14 @@
 * {
     margin: 0;
     padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background-color: #363E40;
 }
 
 .head {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -49,4 +53,28 @@
 
 .head span {
     color: white;
+}
+
+.code {
+    width: 100%;
+    background-color: #363E40;
+    display: flex;
+    justify-content: start;
+}
+
+.code_area {
+    width: 100%;
+    height: 90vh;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: snow;
+    font-size: 18px;
+    resize: none;
+    overflow: scroll;
+    overflow-wrap: normal;
+}
+
+.code_area:focus {
+    outline: none;
 }

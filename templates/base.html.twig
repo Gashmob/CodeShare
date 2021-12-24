@@ -13,11 +13,17 @@
 <body>
 <div class="head">
     <span><i class="fas fa-code"></i> CodeShare</span>
-    <input type="text" name="name" class="title" placeholder="Sans titre">
+    <input type="text" name="name" class="title" placeholder="Sans titre" autocomplete="off">
     <button><i class="fas fa-share-alt"></i> Share</button>
 </div>
 <div class="code">
+    <textarea class="code_area" autocomplete="off" spellcheck="false" placeholder="#include <stdio.h>
 
+int main() {
+    printf(&#34;Hello World!&#34;);
+
+    return 0;
+}"></textarea>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
