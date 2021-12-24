@@ -42,6 +42,7 @@ class Code
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->language = '';
     }
 
     public function getId(): ?int

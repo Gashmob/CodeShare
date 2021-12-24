@@ -14,7 +14,7 @@
 <div class="head">
     <span><i class="fas fa-code"></i> CodeShare</span>
     <input type="text" name="name" class="title" placeholder="Sans titre" autocomplete="off">
-    <button><i class="fas fa-share-alt"></i> Share</button>
+    <button class="share"><i class="fas fa-share-alt"></i> Share</button>
 </div>
 <div class="code">
     <textarea class="code_area" autocomplete="off" spellcheck="false" placeholder="#include <stdio.h>
@@ -28,6 +28,10 @@ int main() {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    const postUrl = "{{ path('submit') }}";
+    const linkUrl = "{{ url('see', {"uid":" "}) }}";
+</script>
 <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
