@@ -74,4 +74,29 @@ class MainController extends AbstractController
             'code' => $code
         ]);
     }
+
+    /**
+     * @Route("/raw/{uid}", name="raw")
+     * @param string $uid
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function raw(string $uid, EntityManagerInterface $em): Response
+    {
+        $uid = trim($uid);
+
+        $code = false;
+        if ($em->getRepository(Code::class)->findOneBy(['uid' => $uid]) != null) {
+            $file = fopen('code/' . $uid . '.code', 'r');
+
+            $code = "";
+            while (($line = fread($file, 100))) {
+                $code .= $line;
+            }
+        }
+
+        return new Response($code, Response::HTTP_OK, [
+            'content-type' => 'text/plain'
+        ]);
+    }
 }
