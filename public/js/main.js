@@ -17,8 +17,7 @@ $('.share').on('click', function () {
 
                 const uid = data['uid'];
                 const link = linkUrl + '' + uid
-                navigator.clipboard.writeText(link)
-                window.open(link, '_blank')
+                navigator.clipboard.writeText(link).then(() => window.open(link, '_blank'));
             } else {
                 $('.share')[0].innerHTML = '<i class="fas fa-times"></i> Error'
             }
