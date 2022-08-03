@@ -7,9 +7,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: http
+
       - name: Install dependencies
         run: |
-          composer install
+          composer update
 
       - name: Prepare config
         run: |
