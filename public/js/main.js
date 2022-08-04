@@ -17,8 +17,13 @@ $('.share').on('click', function () {
 
                 const uid = data['uid'];
                 const link = linkUrl + '' + uid
-                navigator.clipboard.writeText(link)
-                window.open(link, '_blank')
+
+                navigator.permissions.query({name: "clipboard-write"}).then(result => {
+                    if (result.state === "granted" || result.state === "prompt") {
+                        navigator.clipboard.writeText(link);
+                        window.open(link, '_blank');
+                    }
+                });
             } else {
                 $('.share')[0].innerHTML = '<i class="fas fa-times"></i> Error'
             }

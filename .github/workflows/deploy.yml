@@ -1,0 +1,37 @@
+on: push
+name: Deploy website
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: http
+          
+      - name: Install dependencies
+        run: |
+          composer update
+
+      - name: Prepare config
+        run: |
+          mv .env.prod .env
+
+      - name: Export files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ftpcloud.cluster024.hosting.ovh.net
+          protocol: ftp
+          port: 21
+          username: ${{ secrets.ftp_user }}
+          password: ${{ secrets.ftp_password }}
+          server-dir: CodeShare/
+          security: loose
+          exclude: |
+            var/**
+            .git/**
+            .github/**
