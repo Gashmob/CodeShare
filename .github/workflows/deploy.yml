@@ -34,3 +34,4 @@ jobs:
           exclude: |
             var/**
             .git/**
+            .github/**
