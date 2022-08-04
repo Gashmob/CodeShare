@@ -12,6 +12,10 @@ jobs:
         with:
           php-version: '7.4'
           extensions: http
+          
+      - name: Install dependencies
+        run: |
+          composer update
 
       - name: Prepare config
         run: |
