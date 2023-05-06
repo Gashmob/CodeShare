@@ -27,5 +27,5 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "bin,config,migrations,public,src,templates,vendor"
+          source: "bin,config,migrations,public,src,templates,vendor,composer.json,composer.lock"
           target: ~/www/CodeShare
