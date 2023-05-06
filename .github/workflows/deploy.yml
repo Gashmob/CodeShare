@@ -1,37 +1,31 @@
-on: push
-name: Deploy website
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
 
 jobs:
   deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
           extensions: http
-          
-      - name: Install dependencies
-        run: |
-          composer update
 
-      - name: Prepare config
-        run: |
-          mv .env.prod .env
+      - name: Install dependencies
+        run: composer install
 
       - name: Export files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        uses: appleboy/scp-action@v0.1.4
         with:
-          server: ftpcloud.cluster024.hosting.ovh.net
-          protocol: ftp
-          port: 21
-          username: ${{ secrets.ftp_user }}
-          password: ${{ secrets.ftp_password }}
-          server-dir: CodeShare/
-          security: loose
-          exclude: |
-            var/**
-            .git/**
-            .github/**
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "bin,config,migrations,public,src,templates,vendor"
+          target: ~/www/CodeShare
